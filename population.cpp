@@ -15,7 +15,16 @@ Animal Population::get(int id)const{
 }
      
      
-        vector<int> getIds()const;
-        int reserve();
+vector<int> Population::getIds()const{ 
+    vector<int> t;
+    for(int i = 0; i < animaux.size();i++){
+        t.push_back(animaux[i].getId());
+    }
+    return t;
+}
+
+int Population::reserve(){
+    
+}
         void set(Animal a);
         void supprime(int id);
