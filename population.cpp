@@ -32,22 +32,34 @@ vector<int> Population::getIds()const{
 }
 
 int Population::reserve(){
-    
+    bool exist = false;
+    int id;
+    do{
+        id = rand()%50;
+        for(int i = 0;i< animaux.size(); i++){
+            if(animaux[i].getId() == id)
+                exist = true;
+        }
+    }while(not exist);
+    return id;
 }
 void Population::set(Animal a){
     animaux.push_back(a);
+    for(int i = 0; i < caseLibre.size();i++){
+        if(caseLibre[i]==a.getCoord()){
+            caseLibre.erase(caseLibre.begin()+i);
+            return;
+        }
+    }
 
 }
         
 void Population::supprime(int id){
     for(int i = 0; i < animaux.size();i++){
         if(animaux[i].getId()==id){
-            for(int j = 0; j < caseLibre.size();j++){
-                if(caseLibre[j] == animaux[i].getCoord())
-                    caseLibre.erase(j);
-            }
-            animaux.erase(i);
+            caseLibre.push_back(animaux[i].getCoord());
+            animaux.erase(animaux.begin()+i);
+            return;
         }
     }
-    for(int i = 0; i < caseLibre.size();i++)
 }
