@@ -5,15 +5,20 @@
 using namespace std;
 
 enum class Espece{lapin, renard};
+#define MAXCARD 100
+#define TAILLEGRILLE 5
 
 class Coord{
     public:
-        Coord(int x, int y);   
+        Coord(int n);
+        Coord(int l, int c);   
         int getX() const;
         int getY() const;
-        bool operator==(Coord c)const;
-        bool operator!=(Coord c)const;
-        vector<Coord> EnsCoord_voisins(Coord c) const;
+        friend bool operator==(Coord const & c1,Coord const & c2 );
+        friend bool operator!=(Coord const & c1,Coord const & c2 );
+        friend ostream& operator<<(ostream& out, Coord const &c);
+        int toInt() const;
+        Ensemble voisins() const;
     private:
         int x, y;
 };
@@ -23,7 +28,7 @@ class Animal{
         Animal(int id, Espece espece, Coord coord);
         Espece getEspece()const;
         Coord getCoord() const;
-        void setCoord();
+        void setCoord(Coord c);
         int getId()const;
         int getNouriture()const;
         void mange(int n);
@@ -45,11 +50,11 @@ class Population{
         Population();
         Animal get(int id)const;
         vector<int> getIds()const;
-        int reserve();
+        int reserve(int id);
         void set(Animal a);
         void supprime(int id);
     private:
-        array<Animal, 50> animaux;
+        vector<Animal> animaux;
         vector<Coord> caseLibre;
 };
 
