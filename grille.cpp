@@ -36,7 +36,7 @@ void Grille::setcase(int id, Coord c){
             Animal a = p.get(t[i]);
             p.supprime(id);
             a.setCoord(c);
-            p.reserve(id);
+            p.reserve();
             p.set(a);
             return;
         }   

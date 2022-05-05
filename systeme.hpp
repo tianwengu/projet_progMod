@@ -23,6 +23,20 @@ class Coord{
         int x, y;
 };
 
+class Ensemble{
+    public:
+        Ensemble(){card = 0;}
+        friend ostream& operator<<(ostream& out, Ensemble const &e);
+        bool estVide() const;
+        int cardinal() const;
+        void ajoute(int a);
+        int tire();
+    private:
+        int card;
+        array<int, MAXCARD> t;
+};
+
+
 class Animal{
     public:
         Animal(int id, Espece espece, Coord coord);
@@ -50,7 +64,7 @@ class Population{
         Population();
         Animal get(int id)const;
         vector<int> getIds()const;
-        int reserve(int id);
+        int reserve();
         void set(Animal a);
         void supprime(int id);
     private:
@@ -75,9 +89,9 @@ struct Jeu{
         Jeu();
         void ajouteAnimal(Espece e, Coord c);
         bool verifieGrille() const;
-        vector<Coord> voisinsVides() const;
-        vector<Coord> voisinsEspece(Espece e) const;
-        void deplace();
+        vector<Coord> voisinsVides(Coord c) const;
+        vector<Coord> voisinsEspece(Coord c, Espece e) const;
+        void deplace(Animal a);
     private:
         Grille g;
         Population p;
