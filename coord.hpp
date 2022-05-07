@@ -1,7 +1,5 @@
 #ifndef COORD_HPP
 #define COORD_HPP
-
-#include <iostream>
 #include <array>
 #include "ensemble.hpp"
 using namespace std;
