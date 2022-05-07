@@ -1,44 +1,25 @@
-#include<iostream>
-#include<vector>
+#include<array>
 #include "grille.hpp"
 using namespace std;
+#define Vide -1
 
 Grille::Grille(){
-    p = Population();
+    for(int i = 0; i < 400; i++)
+        g[i] = Vide;
 }
 
 bool Grille::caseVide(Coord c) const{
-    vector<int> t = p.getIds();
-    for(int i = 0; i < t.size();i++){
-        if(c == p.get(t[i]).getCoord())
-            return false;
-    }
-    return true;
+    return g[c.toInt()] == Vide;
 }
-        
+
 int Grille::getCase(Coord c) const{
-    vector<int> t = p.getIds();
-    for(int i = 0; i < t.size();i++){
-        if(c == p.get(t[i]).getCoord())
-            return t[i];
-    }
-    return -1;
+    return g[c.toInt()];
 }
 
 void Grille::videCase(Coord c){
-    int id = getCase(c);
-    p.supprime(id); 
+    g[c.toInt()] = Vide;
 }
 
 void Grille::setcase(int id, Coord c){
-    vector<int> t = p.getIds();
-    for(int i = 0; i < t.size();i++){
-        if(id == t[i]){
-            Animal a = p.get(t[i]);
-            p.supprime(id);
-            a.setCoord(c);
-            p.set(a);
-            return;
-        }   
-    }
+    g[c.toInt()] = id;
 }

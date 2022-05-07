@@ -26,12 +26,12 @@ int Population::reserve(){
     bool exist = false;
     int id;
     do{
-        id = rand()%50;
+        id = rand()%400;
         for(int i = 0;i< animaux.size(); i++){
             if(animaux[i].getId() == id)
                 exist = true;
         }
-    }while(not exist);
+    }while(exist);
     return id;
 }
 void Population::set(Animal a){

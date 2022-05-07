@@ -1,9 +1,10 @@
 #ifndef GRILLE_H
-#define GRILLR_H
+#define GRILLE_H
 
 #include "coord.hpp"
-#include "population.hpp"
+#include <array>
 class Grille{
+
     public:
         Grille();
         bool caseVide(Coord c) const;
@@ -11,7 +12,7 @@ class Grille{
         void videCase(Coord c);
         void setcase(int id, Coord c);
     private:
-        Population p;
+        array <int, 400> g;
 
 };
 
