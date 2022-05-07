@@ -15,7 +15,6 @@ class Population{
         void supprime(int id);
     private:
         vector<Animal> animaux;
-        vector<Coord> caseLibre;
 };
 
 #endif
